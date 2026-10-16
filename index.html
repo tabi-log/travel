@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>福岡 × 由布院 × 太宰府｜8人旅行攻略</title>
+    <title>旅行紀錄庫</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -148,39 +148,23 @@
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="text-xl font-bold tracking-tighter" style="color: var(--color-deep-blue);">FUKUOKA 2026</span>
+                <div class="flex-shrink-0 flex items-center gap-3 min-w-0">
+                    <a href="#/" class="text-xl font-bold tracking-tighter shrink-0" style="color: var(--color-deep-blue);">旅行紀錄庫</a>
+                    <span id="nav-trip-name" class="text-sm text-gray-500 truncate hidden md:inline"></span>
                 </div>
-                <div class="hidden md:flex space-x-5">
-                    <a href="#" onclick="showPage('home')" id="nav-home" class="nav-item py-4 px-2 nav-active">首頁</a>
-                    <a href="#" onclick="showPage('itinerary')" id="nav-itinerary" class="nav-item py-4 px-2">行程規劃</a>
-                    <a href="#" onclick="showPage('attractions')" id="nav-attractions" class="nav-item py-4 px-2">景點介紹</a>
-                    <a href="#" onclick="showPage('food')" id="nav-food" class="nav-item py-4 px-2">美食紀錄</a>
-                    <a href="#" onclick="showPage('phrases')" id="nav-phrases" class="nav-item py-4 px-2">點餐卡</a>
-                    <a href="#" onclick="showPage('prep')" id="nav-prep" class="nav-item py-4 px-2">行前準備</a>
-                    <a href="#" onclick="showPage('map')" id="nav-map" class="nav-item py-4 px-2">地圖導航</a>
-                </div>
+                <div id="nav-desktop" class="hidden md:flex space-x-5"></div>
                 <div class="flex items-center">
                     <button onclick="checkAdminLogin()" class="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-100">管理</button>
                 </div>
             </div>
         </div>
-        <!-- Mobile menu -->
-        <div class="md:hidden flex justify-around border-t py-2 bg-white overflow-x-auto">
-            <a href="#" onclick="showPage('home')" class="text-xs flex flex-col items-center"><span>🏠</span><span>首頁</span></a>
-            <a href="#" onclick="showPage('itinerary')" class="text-xs flex flex-col items-center"><span>📅</span><span>行程</span></a>
-            <a href="#" onclick="showPage('attractions')" class="text-xs flex flex-col items-center"><span>🏯</span><span>景點</span></a>
-            <a href="#" onclick="showPage('food')" class="text-xs flex flex-col items-center"><span>🍜</span><span>美食</span></a>
-            <a href="#" onclick="showPage('phrases')" class="text-xs flex flex-col items-center shrink-0 px-1"><span>🗣️</span><span>點餐卡</span></a>
-            <a href="#" onclick="showPage('prep')" class="text-xs flex flex-col items-center shrink-0 px-1"><span>🧳</span><span>行前</span></a>
-            <a href="#" onclick="showPage('map')" class="text-xs flex flex-col items-center"><span>📍</span><span>地圖</span></a>
-        </div>
+        <div id="nav-mobile" class="md:hidden flex justify-around border-t py-2 bg-white overflow-x-auto"></div>
     </nav>
 
     <main id="content-area" class="flex-grow container mx-auto px-4 py-8 max-w-6xl"></main>
 
     <footer class="bg-gray-800 text-white py-8 text-center">
-        <p>© 2026 福岡 8 人旅行團 - 一起創造美好回憶</p>
+        <p>旅行紀錄庫 — 一起創造美好回憶</p>
         <p class="mt-3">
             <button onclick="forceRefreshData()" class="text-xs text-gray-300 underline hover:text-white">
                 🔄 內容看起來是舊的？點我強制更新
@@ -209,7 +193,39 @@
 
     <script>
         const defaultData = {
-            dataVersion: 41,
+            dataVersion: 100,
+            tripOrder: ["fukuoka2026"],
+            trips: {
+            fukuoka2026: {
+            id: "fukuoka2026",
+            name: "福岡 × 由布院 × 太宰府",
+            dates: "2026.09.29 – 10.04",
+            emoji: "🏯",
+            blurb: "8 人同行。博多美食、由布院溫泉、太宰府祈願。",
+            status: "done",
+            pages: ["itinerary", "attractions", "food", "phrases", "prep", "map"],
+            areaOrder: ["博多・天神", "由布院", "太宰府", "藥院・八女"],
+            mapEmbed: "https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d106363.37687258322!2d130.34215757913386!3d33.58309852331575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z56aP5bKhIEdSQU5EIEJBU0UgSGFrYXRhIE5hcmF5YSDkvY_lrr8g5L2P5ZCJ56We56S-IOWNmuWkmumBi-ays-WfjiDnlLHluIPpmaLnq5kg6YeR6b6X5rmWIOemj-WztuWFq-W5oeWuruS5i-iUteW6lyDlpKrmr7Dot6_liY3pmoog6IK26ZaA56We56S-!5e0!3m2!1szh-TW!2stw!4v1710000000000!5m2!1szh-TW!2stw",
+            mapLinks: [
+                    { label: "🏠 GRAND BASE Hakata Naraya", url: "https://www.google.com/maps/search/GRAND+BASE+Hakata+Naraya+博多区奈良屋町8-12" },
+                    { label: "⛩️ 住吉神社", url: "https://www.google.com/maps/search/住吉神社+福岡市博多区住吉3丁目1-51" },
+                    { label: "🛍️ 博多運河城", url: "https://www.google.com/maps/search/Canal+City+Hakata+福岡" },
+                    { label: "🚉 博多車站", url: "https://www.google.com/maps/search/博多駅+福岡" },
+                    { label: "♨️ 由布院 / 金鱗湖", url: "https://www.google.com/maps/search/金鱗湖+由布院" },
+                    { label: "🌿 湯之坪街道", url: "https://www.google.com/maps/search/湯の坪街道+由布院" },
+                    { label: "⛩️ 福島八幡宮", url: "https://www.google.com/maps/search/福島八幡宮+八女市" },
+                    { label: "☕ 藥院文青區 / BBB POTTERS", url: "https://www.google.com/maps/search/BBB+POTTERS+薬院+福岡" },
+                    { label: "🏯 太宰府天滿宮", url: "https://www.google.com/maps/search/太宰府天満宮" },
+                    { label: "🗡️ 竈門神社", url: "https://www.google.com/maps/search/竈門神社+太宰府" },
+                    { label: "✈️ 福岡機場", url: "https://www.google.com/maps/search/福岡空港" },
+                    { label: "🎨 藥院文青區", url: "https://www.google.com/maps/search/薬院+福岡" },
+                    { label: "🌳 大濠公園", url: "https://www.google.com/maps/search/大濠公園+福岡" },
+                    { label: "🍲 博多華味鳥（水炊鍋）", url: "https://www.google.com/maps/search/博多華味鳥+福岡" },
+                    { label: "🍵 矢部屋許斐本家（八女茶）", url: "https://www.google.com/maps/search/矢部屋許斐本家+八女" },
+                    { label: "🍜 一蘭拉麵 本社總本店", url: "https://www.google.com/maps/search/一蘭拉麵+本社総本店+福岡" },
+                    { label: "🎂 B-speak（生乳捲）", url: "https://www.google.com/maps/search/B-speak+由布院" },
+                    { label: "🥖 The Full Full Hakata", url: "https://www.google.com/maps/search/The+Full+Full+Hakata" }
+            ],
             info: {
                 title: "福岡旅行攻略",
                 subtitle: "2026.09.29 - 10.04｜5夜6天",
@@ -554,59 +570,109 @@
                     ]}
                 ]
             }
+            }
+            }
         };
 
-        // ── 資料初始化 ────────────────────────────────────────
-        // 重點：畫面內容一律從 localStorage 讀，所以「檔案更新了但瀏覽器仍顯示舊內容」
-        // 的原因不是快取，而是 localStorage 裡還留著上次造訪時存下的舊資料。
-        // 解法：用 dataVersion 比對，只要檔案版本比本機新，就用檔案內容覆蓋。
+        // ── 旅程庫：資料存取 ───────────────────────────────────
+        // 整個網站是一個「旅程庫」：defaultData.trips 裡放每一趟旅行，
+        // currentTripId 決定目前看的是哪一趟。getData() 永遠回傳「當前這趟」，
+        // 所以底下所有渲染與後台函式都不需要知道有多趟這件事。
+        const STORE       = 'tripVaultData';
+        const CHECK_STORE = 'tripVaultChecks';
+        let currentTripId = null;
+
+        const PAGE_META = {
+            home:        { label: '本趟首頁', short: '首頁',   icon: '🏠' },
+            itinerary:   { label: '行程規劃', short: '行程',   icon: '📅' },
+            attractions: { label: '景點介紹', short: '景點',   icon: '🏯' },
+            food:        { label: '美食紀錄', short: '美食',   icon: '🍜' },
+            phrases:     { label: '點餐卡',   short: '點餐卡', icon: '🗣️' },
+            prep:        { label: '行前準備', short: '行前',   icon: '🧳' },
+            map:         { label: '地圖導航', short: '地圖',   icon: '📍' }
+        };
+        const ALL_PAGES = ['itinerary', 'attractions', 'food', 'phrases', 'prep', 'map'];
+
+        function blankTrip(id, name) {
+            return {
+                id: id, name: name, dates: '', emoji: '🧳', blurb: '', status: 'planning',
+                pages: ['itinerary', 'prep'],
+                areaOrder: [], mapEmbed: '', mapLinks: [],
+                info: { title: name, subtitle: '', people: 0, stay: '', heroDesc: '', highlights: [] },
+                itinerary: [], attractions: [], food: [],
+                reservations: [], shopping: [], todos: [],
+                prep: { transport: [], emergency: [], payment: [] },
+                phrases: { limits: '', groups: [] }
+            };
+        }
+        const EMPTY_TRIP = blankTrip('', '');
+
+        // 畫面內容一律從 localStorage 讀，所以「檔案更新了但瀏覽器仍顯示舊內容」
+        // 的原因不是快取，而是 localStorage 還留著上次造訪的舊資料。
+        // 解法：用 dataVersion 比對，檔案比較新就整份覆蓋。
         (function initData() {
-            const raw = localStorage.getItem('fukuokaTravelData');
-
-            // 網址帶 ?reset=1 → 強制重置成檔案最新內容
+            localStorage.removeItem('fukuokaTravelData');   // 舊版單趟格式，已不再使用
             const forceReset = new URLSearchParams(location.search).get('reset') === '1';
-
-            if (!raw || forceReset) {
-                localStorage.setItem('fukuokaTravelData', JSON.stringify(defaultData));
-                return;
-            }
-
+            const raw = localStorage.getItem(STORE);
+            if (!raw || forceReset) { localStorage.setItem(STORE, JSON.stringify(defaultData)); return; }
             let saved;
-            try {
-                saved = JSON.parse(raw);
-            } catch (e) {
-                // 資料損毀 → 直接重置
-                localStorage.setItem('fukuokaTravelData', JSON.stringify(defaultData));
-                return;
+            try { saved = JSON.parse(raw); } catch (e) {
+                localStorage.setItem(STORE, JSON.stringify(defaultData)); return;
             }
-
-            // 版本較舊（或舊資料根本沒有版本欄位）→ 用檔案內容整份覆蓋
-            const savedVer = saved.dataVersion || 0;
-            if (savedVer < (defaultData.dataVersion || 0)) {
-                localStorage.setItem('fukuokaTravelData', JSON.stringify(defaultData));
-                return;
+            // 沒有 trips（舊格式）或版本較舊 → 用檔案內容整份覆蓋
+            if (!saved || !saved.trips || (saved.dataVersion || 0) < (defaultData.dataVersion || 0)) {
+                localStorage.setItem(STORE, JSON.stringify(defaultData)); return;
             }
-
             // 版本相同 → 沿用本機資料，僅補上缺少的欄位
-            if (!saved.info.highlights) saved.info.highlights = defaultData.info.highlights;
-            if (!saved.info.heroDesc)   saved.info.heroDesc   = defaultData.info.heroDesc;
-            (saved.food || []).forEach((f, i) => {
-                if (f.mapUrl === undefined) {
-                    f.mapUrl = (defaultData.food[i] && defaultData.food[i].mapUrl) || "";
-                }
+            saved.tripOrder = saved.tripOrder || Object.keys(saved.trips);
+            Object.keys(saved.trips).forEach(id => {
+                const t = saved.trips[id], d = (defaultData.trips || {})[id] || blankTrip(id, id);
+                ['pages', 'areaOrder', 'mapLinks', 'itinerary', 'attractions', 'food',
+                 'reservations', 'shopping', 'todos'].forEach(k => { if (!Array.isArray(t[k])) t[k] = d[k] || []; });
+                ['info', 'prep', 'phrases'].forEach(k => { if (!t[k]) t[k] = d[k] || {}; });
+                if (!t.info.highlights) t.info.highlights = d.info.highlights || [];
+                if (t.mapEmbed === undefined) t.mapEmbed = d.mapEmbed || '';
+                if (!t.name) t.name = d.name || id;
             });
-            localStorage.setItem('fukuokaTravelData', JSON.stringify(saved));
+            localStorage.setItem(STORE, JSON.stringify(saved));
         })();
 
-        // ── 勾選狀態：獨立存放，升版覆蓋資料時不會被洗掉 ──
-        function getChecks() {
-            try { return JSON.parse(localStorage.getItem('fukuokaChecks') || '{}'); }
+        function getRoot() {
+            try { return JSON.parse(localStorage.getItem(STORE)) || defaultData; }
+            catch (e) { return defaultData; }
+        }
+        function saveRoot(root) { localStorage.setItem(STORE, JSON.stringify(root)); }
+        function tripIds() {
+            const r = getRoot();
+            return (r.tripOrder || []).filter(id => r.trips && r.trips[id]);
+        }
+        // 當前這趟的資料（底下所有函式都用這個）
+        function getData() {
+            const r = getRoot();
+            return (r.trips && r.trips[currentTripId]) || EMPTY_TRIP;
+        }
+        function saveData(d) {
+            const r = getRoot();
+            if (!r.trips) r.trips = {};
+            r.trips[currentTripId] = d;
+            saveRoot(r);
+        }
+        // 檔案內建的「這趟」原始資料，給缺欄位時當後備
+        function DEF() {
+            return ((defaultData.trips || {})[currentTripId]) || EMPTY_TRIP;
+        }
+
+        // ── 勾選狀態：依旅程分開存，升版覆蓋資料時不會被洗掉 ──
+        function allChecks() {
+            try { return JSON.parse(localStorage.getItem(CHECK_STORE) || '{}'); }
             catch (e) { return {}; }
         }
+        function getChecks() { return allChecks()[currentTripId] || {}; }
         function toggleCheck(key, el) {
-            const c = getChecks();
-            c[key] = el.checked;
-            localStorage.setItem('fukuokaChecks', JSON.stringify(c));
+            const a = allChecks();
+            if (!a[currentTripId]) a[currentTripId] = {};
+            a[currentTripId][key] = el.checked;
+            localStorage.setItem(CHECK_STORE, JSON.stringify(a));
             el.parentElement.classList.toggle('opacity-40', el.checked);
             el.parentElement.classList.toggle('line-through', el.checked);
         }
@@ -614,15 +680,8 @@
         // ── 手動強制更新（頁尾按鈕用） ──
         function forceRefreshData() {
             if (!confirm('將以網站最新內容覆蓋這台裝置的資料，確定嗎？')) return;
-            localStorage.removeItem('fukuokaTravelData');
-            location.replace(location.pathname + '?v=' + Date.now());
-        }
-
-        function getData() {
-            return JSON.parse(localStorage.getItem('fukuokaTravelData'));
-        }
-        function saveData(data) {
-            localStorage.setItem('fukuokaTravelData', JSON.stringify(data));
+            localStorage.removeItem(STORE);
+            location.replace(location.pathname + '?v=' + Date.now() + location.hash);
         }
 
         function renderPage(pageId) {
@@ -651,7 +710,7 @@
                 });
 
                 // highlights 卡片（從 data.info.highlights 動態渲染）
-                const highlights = data.info.highlights || defaultData.info.highlights;
+                const highlights = data.info.highlights || DEF().info.highlights;
                 const highlightCards = highlights.map(h => `
                     <div class="card p-6 border-t-4 border-blue-900 text-center">
                         <div class="text-3xl mb-2">${h.icon}</div>
@@ -740,7 +799,7 @@
 
             } else if (pageId === 'attractions') {
                 // 與美食頁一致：依地區收合
-                const aOrder = ["博多・天神", "由布院", "太宰府", "藥院・八女"];
+                const aOrder = data.areaOrder || [];
                 const aIcons = { "博多・天神": "🏙️", "由布院": "♨️", "太宰府": "⛩️", "藥院・八女": "🍵" };
                 const aPresent = [...new Set(data.attractions.map(x => x.area || "其他"))];
                 const aList = [
@@ -777,7 +836,7 @@
             } else if (pageId === 'food') {
                 let foodHtml = '';
                 // 依地區分組；地區順序照行程天數，後台新增的地區會排在最後
-                const areaOrder = ["博多・天神", "由布院", "太宰府", "藥院・八女"];
+                const areaOrder = data.areaOrder || [];
                 const areaIcons = { "博多・天神": "🏙️", "由布院": "♨️", "太宰府": "⛩️", "藥院・八女": "🍵" };
                 const presentAreas = [...new Set(data.food.map(f => f.area || "其他"))];
                 const categories = [
@@ -822,8 +881,8 @@
 
             } else if (pageId === 'prep') {
                 const checks = getChecks();
-                const todos = data.todos || defaultData.todos;
-                const prep = data.prep || defaultData.prep;
+                const todos = data.todos || DEF().todos;
+                const prep = data.prep || DEF().prep;
                 const row = (key, text, preDone) => {
                     const done = checks[key] !== undefined ? checks[key] : !!preDone;
                     return `<label class="flex items-start gap-3 py-2 border-b last:border-0 cursor-pointer ${done ? 'opacity-40 line-through' : ''}">
@@ -897,7 +956,7 @@
                 `;
 
             } else if (pageId === 'phrases') {
-                const ph = data.phrases || defaultData.phrases;
+                const ph = data.phrases || DEF().phrases;
                 const groupsHtml = ph.groups.map(g => `
                     <div class="mb-8">
                         <h3 class="text-xl font-bold mb-4 border-b-2 border-blue-900 inline-block pb-1">${g.title}</h3>
@@ -924,39 +983,15 @@
                 `;
 
             } else if (pageId === 'map') {
+                const links = (data.mapLinks || []).map(l => `
+                        <a href="${l.url}" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">${l.label}</a>`).join('');
+                const embed = data.mapEmbed
+                    ? `<div class="card overflow-hidden h-[600px]"><iframe src="${data.mapEmbed}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>`
+                    : '';
                 container.innerHTML = `
                     <h2 class="text-3xl font-bold mb-8 text-center magazine-title">地圖導航</h2>
-                    <div class="card overflow-hidden h-[600px]">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d106363.37687258322!2d130.34215757913386!3d33.58309852331575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z56aP5bKhIEdSQU5EIEJBU0UgSGFrYXRhIE5hcmF5YSDkvY_lrr8g5L2P5ZCJ56We56S-IOWNmuWkmumBi-ays-WfjiDnlLHluIPpmaLnq5kg6YeR6b6X5rmWIOemj-WztuWFq-W5oeWuruS5i-iUteW6lyDlpKrmr7Dot6_liY3pmoog6IK26ZaA56We56S-!5e0!3m2!1szh-TW!2stw!4v1710000000000!5m2!1szh-TW!2stw"
-                            width="100%"
-                            height="100%"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                        <a href="https://www.google.com/maps/search/GRAND+BASE+Hakata+Naraya+博多区奈良屋町8-12" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🏠 GRAND BASE Hakata Naraya</a>
-                        <a href="https://www.google.com/maps/search/住吉神社+福岡市博多区住吉3丁目1-51" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">⛩️ 住吉神社</a>
-                        <a href="https://www.google.com/maps/search/Canal+City+Hakata+福岡" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🛍️ 博多運河城</a>
-                        <a href="https://www.google.com/maps/search/博多駅+福岡" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🚉 博多車站</a>
-                        <a href="https://www.google.com/maps/search/金鱗湖+由布院" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">♨️ 由布院 / 金鱗湖</a>
-                        <a href="https://www.google.com/maps/search/湯の坪街道+由布院" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🌿 湯之坪街道</a>
-                        <a href="https://www.google.com/maps/search/福島八幡宮+八女市" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">⛩️ 福島八幡宮</a>
-                        <a href="https://www.google.com/maps/search/BBB+POTTERS+薬院+福岡" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">☕ 藥院文青區 / BBB POTTERS</a>
-                        <a href="https://www.google.com/maps/search/太宰府天満宮" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🏯 太宰府天滿宮</a>
-                        <a href="https://www.google.com/maps/search/竈門神社+太宰府" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🗡️ 竈門神社</a>
-                        <a href="https://www.google.com/maps/search/福岡空港" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">✈️ 福岡機場</a>
-                        <a href="https://www.google.com/maps/search/薬院+福岡" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🎨 藥院文青區</a>
-                        <a href="https://www.google.com/maps/search/大濠公園+福岡" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🌳 大濠公園</a>
-                        <a href="https://www.google.com/maps/search/博多華味鳥+福岡" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🍲 博多華味鳥（水炊鍋）</a>
-                        <a href="https://www.google.com/maps/search/矢部屋許斐本家+八女" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🍵 矢部屋許斐本家（八女茶）</a>
-                        <a href="https://www.google.com/maps/search/一蘭拉麵+本社総本店+福岡" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🍜 一蘭拉麵 本社總本店</a>
-                        <a href="https://www.google.com/maps/search/B-speak+由布院" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🎂 B-speak（生乳捲）</a>
-                        <a href="https://www.google.com/maps/search/The+Full+Full+Hakata" target="_blank" class="bg-white p-3 rounded shadow-sm hover:shadow-md transition flex items-center gap-2">🥖 The Full Full Hakata</a>
-                    </div>
+                    ${embed}
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">${links}</div>
                 `;
 
             } else if (pageId === 'admin') {
@@ -966,7 +1001,15 @@
                 }
                 container.innerHTML = `
                     <h2 class="text-3xl font-bold mb-8 text-center magazine-title">後台管理系統</h2>
+                    <div class="bg-white p-4 rounded shadow-sm mb-4 flex flex-wrap items-center gap-3">
+                        <label class="text-sm font-bold">目前編輯：</label>
+                        <select onchange="switchAdminTrip(this.value)" class="border p-2 rounded text-sm">
+                            ${tripIds().map(id => `<option value="${id}" ${id === currentTripId ? 'selected' : ''}>${escHtml(getRoot().trips[id].name || id)}</option>`).join('')}
+                        </select>
+                        <button onclick="addTrip()" class="px-3 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">＋ 新增旅程</button>
+                    </div>
                     <div class="flex flex-wrap gap-2 mb-8 bg-white p-4 rounded shadow-sm">
+                        <button onclick="renderAdminSection('trip')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded">旅程設定</button>
                         <button onclick="renderAdminSection('home')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded">首頁管理</button>
                         <button onclick="renderAdminSection('itinerary')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded">行程管理</button>
                         <button onclick="renderAdminSection('attractions')" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded">景點管理</button>
@@ -988,14 +1031,128 @@
             showPage('home');
         }
 
+        // ── 旅程管理 ──
+        function newTripId(name) {
+            const base = (name || 'trip').toLowerCase().replace(/[^a-z0-9]+/g, '') || 'trip';
+            const stamp = String(new Date().getFullYear());
+            let id = base.slice(0, 16) + stamp, n = 2;
+            const existing = getRoot().trips || {};
+            while (existing[id]) { id = base.slice(0, 16) + stamp + '-' + (n++); }
+            return id;
+        }
+        function addTrip() {
+            const name = prompt('新旅程的名稱（例如「沖繩 家族五日」）：');
+            if (!name) return;
+            const root = getRoot();
+            const id = newTripId(name);
+            root.trips = root.trips || {};
+            root.trips[id] = blankTrip(id, name);
+            root.tripOrder = (root.tripOrder || []).concat(id);
+            saveRoot(root);
+            alert('已新增「' + name + '」。記得最後按「📥 匯出更新檔」才會存到網站上。');
+            location.hash = '#/' + id + '/admin';
+        }
+        function deleteTrip(id) {
+            const root = getRoot();
+            const t = root.trips[id];
+            if (!t) return;
+            if (!confirm('確定刪除「' + (t.name || id) + '」？這趟的所有行程、景點、美食都會一起消失，無法復原。')) return;
+            if (prompt('請輸入旅程名稱以確認刪除：') !== (t.name || id)) { alert('名稱不符，已取消。'); return; }
+            delete root.trips[id];
+            root.tripOrder = (root.tripOrder || []).filter(x => x !== id);
+            saveRoot(root);
+            const left = tripIds();
+            location.hash = left.length ? '#/' + left[0] + '/admin' : '#/';
+        }
+        function switchAdminTrip(id) { location.hash = '#/' + id + '/admin'; }
+        function updateTripMeta(field, value) {
+            const d = getData();
+            d[field] = value;
+            saveData(d);
+            if (field === 'name') renderNav();
+        }
+        function toggleTripPage(pid, on) {
+            const d = getData();
+            const set = new Set(d.pages || []);
+            if (on) set.add(pid); else set.delete(pid);
+            d.pages = ALL_PAGES.filter(p => set.has(p));
+            saveData(d);
+            renderNav();
+        }
+        function moveTrip(id, dir) {
+            const root = getRoot();
+            const order = root.tripOrder || [];
+            const i = order.indexOf(id), j = i + dir;
+            if (i < 0 || j < 0 || j >= order.length) return;
+            [order[i], order[j]] = [order[j], order[i]];
+            root.tripOrder = order;
+            saveRoot(root);
+            renderAdminSection('trip');
+        }
+
         function renderAdminSection(section) {
             const content = document.getElementById('admin-section-content');
             const data = getData();
 
+            // ── 旅程設定 ─────────────────────────────────────────
+            if (section === 'trip') {
+                const d = data;
+                const order = tripIds();
+                const i = order.indexOf(currentTripId);
+                const field = (label, key, placeholder) => `
+                    <div class="mb-3">
+                        <label class="block text-sm text-gray-600 mb-1">${label}</label>
+                        <input class="w-full border p-2 rounded" value="${escHtml(d[key] || '')}" placeholder="${placeholder || ''}"
+                               onchange="updateTripMeta('${key}', this.value)">
+                    </div>`;
+                content.innerHTML = `
+                    <h3 class="text-xl font-bold mb-4">旅程設定</h3>
+                    <div class="bg-white p-6 rounded shadow-sm max-w-2xl">
+                        ${field('旅程名稱', 'name', '福岡 × 由布院 × 太宰府')}
+                        ${field('日期', 'dates', '2026.09.29 – 10.04')}
+                        ${field('卡片圖示（emoji）', 'emoji', '🏯')}
+                        ${field('一句話簡介', 'blurb', '8 人同行，溫泉與老街')}
+                        <div class="mb-4">
+                            <label class="block text-sm text-gray-600 mb-1">狀態</label>
+                            <select class="border p-2 rounded" onchange="updateTripMeta('status', this.value)">
+                                <option value="planning" ${d.status !== 'done' ? 'selected' : ''}>規劃中</option>
+                                <option value="done" ${d.status === 'done' ? 'selected' : ''}>已完成</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm text-gray-600 mb-2">這趟要開哪些分頁</label>
+                            <p class="text-xs text-gray-500 mb-2">不需要的就關掉 —— 用不到的分頁只會讓人覺得「隱藏功能太多」。</p>
+                            ${ALL_PAGES.map(pid => `
+                                <label class="flex items-center gap-2 py-1">
+                                    <input type="checkbox" ${(d.pages || []).includes(pid) ? 'checked' : ''}
+                                           onchange="toggleTripPage('${pid}', this.checked)">
+                                    <span class="text-sm">${PAGE_META[pid].icon} ${PAGE_META[pid].label}</span>
+                                </label>`).join('')}
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm text-gray-600 mb-1">美食／景點的地區排序（用逗號分隔）</label>
+                            <input class="w-full border p-2 rounded" value="${escHtml((d.areaOrder || []).join(', '))}"
+                                   placeholder="博多・天神, 由布院, 太宰府"
+                                   onchange="updateTripMeta('areaOrder', this.value.split(',').map(x => x.trim()).filter(Boolean))">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm text-gray-600 mb-1">地圖嵌入網址（Google Maps embed src，可留空）</label>
+                            <input class="w-full border p-2 rounded text-xs" value="${escHtml(d.mapEmbed || '')}"
+                                   onchange="updateTripMeta('mapEmbed', this.value)">
+                        </div>
+                        <div class="flex items-center gap-2 pt-4 border-t">
+                            <button onclick="moveTrip('${currentTripId}', -1)" class="px-3 py-1 border rounded text-sm" ${i <= 0 ? 'disabled' : ''}>↑ 在庫首頁往前</button>
+                            <button onclick="moveTrip('${currentTripId}', 1)" class="px-3 py-1 border rounded text-sm" ${i < 0 || i >= order.length - 1 ? 'disabled' : ''}>↓ 往後</button>
+                            <button onclick="deleteTrip('${currentTripId}')" class="px-3 py-1 bg-red-100 text-red-600 rounded text-sm ml-auto">刪除這趟旅程</button>
+                        </div>
+                    </div>`;
+                return;
+            }
+
             // ── 首頁管理 ──────────────────────────────────────────
             if (section === 'home') {
                 const d = data.info;
-                if (!d.highlights) d.highlights = defaultData.info.highlights;
+                if (!d.highlights) d.highlights = DEF().info.highlights;
 
                 content.innerHTML = `
                     <h3 class="text-xl font-bold mb-4">首頁管理</h3>
@@ -1155,7 +1312,7 @@
 
             // ── 待辦管理 ─────────────────────────────────────────
             } else if (section === 'todos') {
-                if (!data.todos) data.todos = defaultData.todos;
+                if (!data.todos) data.todos = DEF().todos;
                 content.innerHTML = `
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-xl font-bold">出發前待辦管理</h3>
@@ -1175,7 +1332,7 @@
 
             // ── 點餐卡管理 ───────────────────────────────────────
             } else if (section === 'phrases') {
-                if (!data.phrases) data.phrases = defaultData.phrases;
+                if (!data.phrases) data.phrases = DEF().phrases;
                 const ph = data.phrases;
                 content.innerHTML = `
                     <h3 class="text-xl font-bold mb-4">點餐卡管理</h3>
@@ -1264,7 +1421,7 @@
         }
         function updateHighlight(idx, field, value) {
             const data = getData();
-            if (!data.info.highlights) data.info.highlights = defaultData.info.highlights;
+            if (!data.info.highlights) data.info.highlights = DEF().info.highlights;
             data.info.highlights[idx][field] = value;
             saveData(data);
         }
@@ -1438,16 +1595,123 @@
         }
 
 
-        // ── 導覽 ──
+        // ── 路由：#/<旅程>/<分頁>，#/ 是旅程庫首頁 ──
         function showPage(pageId) {
+            if (!currentTripId) { location.hash = '#/'; route(); return; }
+            const target = '#/' + currentTripId + '/' + pageId;
+            if (location.hash === target) route(); else location.hash = target;
+        }
+        function openTrip(id, pageId) {
+            location.hash = '#/' + id + '/' + (pageId || 'home');
+        }
+        function goVault() { location.hash = '#/'; }
+
+        function navPagesOf(trip) {
+            const declared = Array.isArray(trip.pages) ? trip.pages : [];
+            return ['home'].concat(ALL_PAGES.filter(p => declared.includes(p)));
+        }
+
+        function renderNav() {
+            const desktop = document.getElementById('nav-desktop');
+            const mobile  = document.getElementById('nav-mobile');
+            const nameEl  = document.getElementById('nav-trip-name');
+            if (!currentTripId) {
+                desktop.innerHTML = '';
+                mobile.innerHTML  = '';
+                mobile.classList.add('hidden');
+                nameEl.textContent = '';
+                return;
+            }
+            const trip = getData();
+            nameEl.textContent = trip.name || '';
+            const pages = navPagesOf(trip);
+            desktop.innerHTML =
+                `<a href="#/" class="nav-item py-4 px-2 text-gray-500">← 所有旅程</a>` +
+                pages.map(pid => `<a href="#" onclick="showPage('${pid}');return false;" id="nav-${pid}" class="nav-item py-4 px-2">${PAGE_META[pid].label}</a>`).join('');
+            mobile.classList.remove('hidden');
+            mobile.innerHTML =
+                `<a href="#/" class="text-xs flex flex-col items-center shrink-0 px-1"><span>📚</span><span>旅程</span></a>` +
+                pages.map(pid => `<a href="#" onclick="showPage('${pid}');return false;" class="text-xs flex flex-col items-center shrink-0 px-1"><span>${PAGE_META[pid].icon}</span><span>${PAGE_META[pid].short}</span></a>`).join('');
+        }
+
+        // ── 旅程庫首頁 ──
+        function renderVault() {
+            const root = getRoot();
+            const ids = tripIds();
+            const container = document.getElementById('content-area');
+            const statusTag = t => t.status === 'done'
+                ? '<span class="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">已完成</span>'
+                : '<span class="text-xs px-2 py-0.5 rounded bg-orange-100 text-orange-700">規劃中</span>';
+            const cards = ids.map(id => {
+                const t = root.trips[id];
+                const days = (t.itinerary || []).length;
+                return `
+                    <a href="#/${id}/home" class="card p-6 flex flex-col gap-2 hover:no-underline">
+                        <div class="flex items-start justify-between gap-2">
+                            <span class="text-4xl">${t.emoji || '🧳'}</span>
+                            ${statusTag(t)}
+                        </div>
+                        <h3 class="text-xl font-bold mt-2">${t.name || id}</h3>
+                        <p class="text-sm text-gray-500">${t.dates || ''}${days ? '｜' + days + ' 天' : ''}</p>
+                        <p class="text-sm text-gray-600 flex-grow">${t.blurb || ''}</p>
+                        <span class="text-xs text-blue-600 mt-2">進入這趟 →</span>
+                    </a>`;
+            }).join('');
+            container.innerHTML = `
+                <section class="text-center mb-10">
+                    <h1 class="text-4xl md:text-5xl font-bold magazine-title mb-3">旅行紀錄庫</h1>
+                    <p class="text-gray-600">一趟一張卡片，點進去是那趟的完整規劃。</p>
+                </section>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    ${cards || '<p class="text-center text-gray-500 col-span-3">還沒有任何旅程，從右上角「管理」新增一趟。</p>'}
+                </div>`;
+        }
+
+        function route() {
+            const parts = (location.hash || '').replace(/^#\/?/, '').split('/').filter(Boolean);
+            const ids = tripIds();
+            if (!parts.length || !ids.includes(parts[0])) {
+                currentTripId = null;
+                renderNav();
+                renderVault();
+                window.scrollTo(0, 0);
+                return;
+            }
+            currentTripId = parts[0];
+            const trip = getData();
+            let page = parts[1] || 'home';
+            if (page !== 'admin' && !navPagesOf(trip).includes(page)) page = 'home';
+            renderNav();
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('nav-active'));
-            const activeNav = document.getElementById('nav-' + pageId);
-            if (activeNav) activeNav.classList.add('nav-active');
-            renderPage(pageId);
+            const active = document.getElementById('nav-' + page);
+            if (active) active.classList.add('nav-active');
+            renderPage(page);
+            window.scrollTo(0, 0);
+        }
+        window.addEventListener('hashchange', route);
+        function openAdmin() {
+            if (!currentTripId) {
+                const ids = tripIds();
+                if (!ids.length) {
+                    const root = getRoot();
+                    const name = prompt('旅程庫目前是空的。要新增的第一趟旅行叫什麼名字？');
+                    if (!name) return;
+                    const id = newTripId(name);
+                    root.trips = root.trips || {};
+                    root.trips[id] = blankTrip(id, name);
+                    root.tripOrder = (root.tripOrder || []).concat(id);
+                    saveRoot(root);
+                    location.hash = '#/' + id + '/admin';
+                    return;
+                }
+                location.hash = '#/' + ids[0] + '/admin';
+                return;
+            }
+            showPage('admin');
         }
         function checkAdminLogin() {
             if (sessionStorage.getItem('isAdmin') === 'true') {
-                showPage('admin');
+                openAdmin();
             } else {
                 document.getElementById('login-modal').classList.remove('hidden');
             }
@@ -1461,7 +1725,7 @@
             if (user === 'fukuoka2026' && pass === 'travel8people') {
                 sessionStorage.setItem('isAdmin', 'true');
                 closeLoginModal();
-                showPage('admin');
+                openAdmin();
             } else {
                 alert('帳號或密碼錯誤');
             }
@@ -1481,12 +1745,20 @@
 
         // ── 產生新版 HTML（把 defaultData 換成最新資料） ──
         function buildNewHTML() {
-            const currentData = getData();
+            // 匯出的是整個旅程庫（所有旅程），不是單一趟
+            const root = getRoot();
             // 每次匯出都蓋上新版本號，訪客下次開啟時才會自動吃到最新內容
-            currentData.dataVersion = Date.now();
-            saveData(currentData);
+            root.dataVersion = Date.now();
+            saveRoot(root);
+            // 先清空「由 JS 填出來的」容器再取原始碼，否則當下畫面會被烤進檔案裡，
+            // 每匯出一次檔案就變大一輪。
+            const live = ['content-area', 'nav-desktop', 'nav-mobile', 'nav-trip-name']
+                .map(id => document.getElementById(id)).filter(Boolean);
+            const kept = live.map(el => el.innerHTML);
+            live.forEach(el => { el.innerHTML = ''; });
             const source = document.documentElement.outerHTML;
-            const newDataStr = 'const defaultData = ' + JSON.stringify(currentData, null, 12) + ';';
+            live.forEach((el, i) => { el.innerHTML = kept[i]; });
+            const newDataStr = 'const defaultData = ' + JSON.stringify(root, null, 4) + ';';
             const startMarker = 'const defaultData = {';
             const startIdx = source.indexOf(startMarker);
             let depth = 0, endIdx = -1, inString = false, strChar = '', escaped = false;
@@ -1579,7 +1851,7 @@
             }
         }
 
-        window.onload = () => { showPage('home'); };
+        window.onload = route;
     </script>
 </body>
 </html>
