@@ -1415,8 +1415,8 @@ window.TRIP_DATA = {
     "cap": "金鱗湖 鳥居"
    },
    "card": {
-    "img": "05",
-    "pos": 50
+    "img": "07",
+    "pos": 89
    }
   },
   "trip": {
@@ -1451,7 +1451,7 @@ window.TRIP_DATA = {
     "area": "博多・天神",
     "img": "09",
     "cap": "The Full Full Hakata",
-    "pos": 50,
+    "pos": 84,
     "hint": "岩田屋本店・天神地下街・華味鳥等",
     "must": [
      [
@@ -1469,9 +1469,9 @@ window.TRIP_DATA = {
    "3": {
     "short": "由布院",
     "area": "由布院",
-    "img": "04",
-    "cap": "金鱗湖與由布岳",
-    "pos": 50,
+    "img": "05",
+    "cap": "金鱗湖 湖畔",
+    "pos": 65,
     "hint": "金鱗湖・湯之坪街道・B-speak 等",
     "must": [
      [
@@ -1491,7 +1491,7 @@ window.TRIP_DATA = {
     "area": "太宰府",
     "img": "06",
     "cap": "太宰府駅 月台（往二日市）",
-    "pos": 50,
+    "pos": 67,
     "hint": "太宰府天滿宮・梅ヶ枝餅・参道小吃等",
     "must": [
      [
