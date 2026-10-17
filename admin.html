@@ -686,10 +686,31 @@ async function publish(){
     toast('已發布，1–2 分鐘後網站會更新');
   } catch(e){
     btn.disabled = false; btn.textContent = '再試一次';
+    // 金鑰沒有寫入權限或失效：就地換金鑰重試，不必重新整理，未發布的修改都會保留
+    if (e.status === 401 || e.status === 403) return askToken(e.status);
     const why = e.status === 409 || e.status === 422 ? '網站資料在別處被改過了。請先記下這次的修改，重新整理後台再改一次。' :
-      e.status === 401 ? '金鑰失效了，請登出後重新登入。' : `發布失敗：${e.message}${e.detail ? '（' + e.detail + '）' : ''}`;
+      `發布失敗：${e.message}${e.detail ? '（' + e.detail + '）' : ''}`;
     toast(why);
   }
+}
+function askToken(status){
+  modal(`<h2>${status === 401 ? '金鑰失效了' : '這組金鑰沒有寫入權限'}</h2>
+    <p>${status === 401 ? '金鑰已過期或被刪除，請建立一組新的。' : '金鑰可以讀資料，但不能存檔。通常是下面其中一個原因：'}</p>
+    ${status === 403 ? `<ol>
+      <li><b>Resource owner</b> 選成了個人帳號，要選 <b>tabi-log</b></li>
+      <li><b>Contents</b> 權限是 Read-only，要改成 <b>Read and write</b></li>
+      <li>組織還沒核准這組金鑰：到 <a href="https://github.com/organizations/tabi-log/settings/personal-access-token-requests" target="_blank" rel="noopener">tabi-log 的金鑰申請頁</a> 按核准</li>
+    </ol>` : ''}
+    <p class="hint">修好後把新金鑰貼在下面，這次的修改都還在，不用重做。</p>
+    <label class="f" for="newToken">新的 GitHub 金鑰<input type="password" id="newToken" autocomplete="off" placeholder="github_pat_…"></label>
+    <div style="display:flex;gap:10px"><button class="btn primary" type="button" id="retryToken">換上新金鑰並發布</button><button class="btn" type="button" data-close>先不要</button></div>`);
+  $('#retryToken').addEventListener('click', () => {
+    const t = $('#newToken').value.trim();
+    if (!t) return toast('請貼上新的金鑰');
+    token = t; store.set(t);
+    closeModal();
+    $('#publishBtn').click();
+  });
 }
 </script>
 </body>
