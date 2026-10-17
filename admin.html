@@ -204,6 +204,7 @@ async function gh(path, opts = {}){
   });
   if (!res.ok){
     const e = new Error(`GitHub 回應 ${res.status}`); e.status = res.status;
+    e.need = res.headers.get('X-Accepted-GitHub-Permissions') || '';
     try { e.detail = (await res.json()).message; } catch(_){}
     throw e;
   }
@@ -246,6 +247,9 @@ async function start(){
     } else {
       const repo = await gh('');
       if (!repo.permissions || !repo.permissions.push) throw Object.assign(new Error('這組金鑰沒有寫入權限'), {detail:'請確認 Contents 權限設為 Read and write'});
+      // 實際試寫一次（建立一個不會出現在網站上的暫存物件），確認金鑰真的能存檔
+      try { await gh('/git/blobs', {method:'POST', body: JSON.stringify({content:'write-check', encoding:'utf-8'})}); }
+      catch(err){ if (err.status === 403 || err.status === 404) throw Object.assign(err, {nowrite:true}); throw err; }
       const r = await loadRemote(); data = r.data; dataSha = r.sha;
     }
     origJSON = JSON.stringify(data);
@@ -257,6 +261,17 @@ async function start(){
     setTimeout(layoutPreview, 0);
   } catch(e){
     $('#loginErr').hidden = false;
+    if (e.nowrite){
+      $('#loginErr').innerHTML = `這組金鑰可以讀取，但不能存檔，請檢查：
+        <ol style="font-weight:400;color:var(--ink);margin:6px 0 0">
+          <li>Repository access 要選 <b>Only select repositories → travel</b>（選「Public repositories」只能讀）</li>
+          <li>Contents 權限要是 <b>Read and write</b>，改完要按頁面最下方的 <b>Update</b></li>
+          <li>組織設定要允許金鑰：<a href="https://github.com/organizations/tabi-log/settings/personal-access-tokens" target="_blank" rel="noopener">tabi-log 金鑰設定</a> 選「Allow access via fine-grained personal access tokens」</li>
+          <li>如果你重新建了一組金鑰，請把<b>新的</b>貼上（舊的會一直失敗）</li>
+        </ol>
+        <small style="font-weight:400;color:var(--mute)">GitHub 訊息：${esc(e.detail || e.message)}${e.need ? '｜需要權限：' + esc(e.need) : ''}</small>`;
+      store.clear(); return;
+    }
     $('#loginErr').textContent = e.status === 401 ? '金鑰無效或已過期，請重新建立一組。' :
       e.status === 404 ? '找不到網站的 repo，請確認金鑰的 Repository access 有選 travel。' :
       `登入失敗：${e.message}${e.detail ? '（' + e.detail + '）' : ''}`;
