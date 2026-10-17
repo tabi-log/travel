@@ -1410,9 +1410,9 @@ window.TRIP_DATA = {
   "people": 8,
   "home": {
    "hero": {
-    "img": "02",
-    "pos": 40,
-    "cap": "由布院・金鱗湖"
+    "img": "03",
+    "pos": 66,
+    "cap": "金鱗湖 鳥居"
    },
    "card": {
     "img": "05",
